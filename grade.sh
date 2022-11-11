@@ -8,8 +8,12 @@ cp TestListExamples.java student-submission
 cd student-submission
 if[[ -e "ListExamples.java" ]]
 then 
-    javac ListExamples.java
-    if[[ $? -eq 0 ]]
+    javac ListExamples.java  
+else 
+    echo "ListExamples.java not found"
+    exit
+fi
+if[[ $? -eq 0 ]]
     then
         echo "ListExamples.java cannot be compiled"
         exit
@@ -22,10 +26,5 @@ then
         exit
     fi
     echo grep -c "Error" err-output.txt "/2"
-else 
-    echo "ListExamples.java not found"
-    exit
-fi
-
 
 
