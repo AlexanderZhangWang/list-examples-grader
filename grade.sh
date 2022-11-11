@@ -6,7 +6,8 @@ rm -rf student-submission
 git clone $1 student-submission
 cp TestListExamples.java student-submission
 cd student-submission
-if[ -e ListExamples.java ]
+
+if( -e ListExamples.java )
 then 
 
 else 
