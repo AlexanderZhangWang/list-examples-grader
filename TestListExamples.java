@@ -4,13 +4,13 @@ import org.junit.*;
 public class TestListExamples {
   // Write your grading tests here!
   class IfLengthLargerThanTwo implements StringChecker{
-  public boolean checkString(String s){
-    if(s.length() > 2){
-      return true;
+    public boolean checkString(String s){
+      if(s.length() > 2){
+        return true;
+      }
+      return false;
     }
-    return false;
   }
-}
   @Test
     public void testFilter(){
         ArrayList<String> arr = new ArrayList<>(); arr.add("a"); arr.add("aa"); arr.add("aaa"); arr.add("aaaa");
