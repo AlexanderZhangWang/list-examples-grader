@@ -15,24 +15,24 @@ else
     echo "ListExamples.java not found!!! 0/2"
     exit
 fi
-javac ListExamples.java 2> err-output.txt > out.txt 
+javac ListExamples.java 2> err.txt > out.txt 
 if [ $? -eq 0 ]
 then
-    javac -cp $CPATH TestListExamples.java 2> err-output.txt > out.txt
+    javac -cp $CPATH TestListExamples.java 2> err.txt > out.txt
 else
     echo "ListExamples.java cannot be compiled!!! 0/2"
     exit
 fi
 
-java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 2> err-output2.txt > out.txt
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 2> err2.txt > out.txt
 if [ $? -eq 0 ]
 then
     echo "2/2!!!"
     exit
 else
-    grep -c "error:" err-output2.txt > result.txt
+    grep -c "error:" err.txt > result.txt
     cat result.txt
-    echo "/2"
+    echo "are wrong, total tests: 2!!!"
     exit
 fi
 
