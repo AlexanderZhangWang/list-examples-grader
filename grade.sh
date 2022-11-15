@@ -1,30 +1,39 @@
 # Create your grading script here
 
-set -e
 
 rm -rf student-submission
 git clone $1 student-submission
 cp TestListExamples.java student-submission
+cp lib/hamcrest-core-1.3.jar student-submission
+cp lib/junit-4.13.2.jar student-submission
 cd student-submission
-if[[ -e "ListExamples.java" ]]
-then 
-    javac ListExamples.java  
+CPATH=".:hamcrest-core-1.3.jar:junit-4.13.2.jar"
+if [ -f "ListExamples.java" ]
+then
+    echo ""
 else 
-    echo "ListExamples.java not found"
+    echo "ListExamples.java not found!!! 0/2"
     exit
 fi
-if[[ $? -eq 0 ]]
-    then
-        echo "ListExamples.java cannot be compiled"
-        exit
-    fi
-    javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar TestListExamples.java
-    java TestListExamples.java 2> err-output.txt
-    if[[ $? -eq 0 ]]
-    then
-        echo "2/2"
-        exit
-    fi
-    echo grep -c "Error" err-output.txt "/2"
+javac ListExamples.java 2> err-output.txt > out.txt 
+if [ $? -eq 0 ]
+then
+    javac -cp $CPATH TestListExamples.java 2> err-output.txt > out.txt
+else
+    echo "ListExamples.java cannot be compiled!!! 0/2"
+    exit
+fi
+
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 2> err-output2.txt > out.txt
+if [ $? -eq 0 ]
+then
+    echo "2/2!!!"
+    exit
+else
+    grep -c "error:" err-output2.txt > result.txt
+    cat result.txt
+    echo "/2"
+    exit
+fi
 
 
