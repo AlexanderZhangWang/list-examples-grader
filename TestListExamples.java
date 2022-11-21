@@ -11,7 +11,7 @@ public class TestListExamples {
       return false;
     }
   }
-  @Test
+  @Test(timeout = 100)
     public void testFilter(){
         ArrayList<String> arr = new ArrayList<>(); arr.add("a"); arr.add("aa"); arr.add("aaa"); arr.add("aaaa");
         ArrayList<String> arr2 = new ArrayList<>(); arr2.add("aaa"); arr2.add("aaaa");
@@ -20,7 +20,7 @@ public class TestListExamples {
         
     }
 
-    @Test
+    @Test(timeout = 100)
     public void testMerge(){
         ArrayList<String> arr = new ArrayList<>(); arr.add("a"); arr.add("c"); 
         ArrayList<String> arr2 = new ArrayList<>(); arr2.add("b"); arr2.add("d"); arr2.add("e"); arr2.add("f");
